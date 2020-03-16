@@ -7,7 +7,7 @@ defmodule TwelveDays do
     5 => {:fifth, "five Gold Rings"},
     6 => {:sixth, "six Geese-a-Laying"},
     7 => {:seventh, "seven Swans-a-Swimming"},
-    8 => {:eight, "eight Maids-a-Milking"},
+    8 => {:eighth, "eight Maids-a-Milking"},
     9 => {:ninth, "nine Ladies Dancing"},
     10 => {:tenth, "ten Lords-a-Leaping"},
     11 => {:eleventh, "eleven Pipers Piping"},
@@ -22,7 +22,7 @@ defmodule TwelveDays do
     "On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree."
   end
 
-  def verse(number) when number >= 1 do
+  def verse(number) when number > 1 do
     {numerator, gift} = Map.get(@days, number)
     Enum.take(@days, number - 1)
     |> Enum.reverse()
@@ -36,6 +36,9 @@ defmodule TwelveDays do
   """
   @spec verses(starting_verse :: integer, ending_verse :: integer) :: String.t()
   def verses(starting_verse, ending_verse) do
+    Enum.map(starting_verse..ending_verse,  &(verse(&1)))
+    |> Enum.intersperse("\n")
+    |> List.to_string()
   end
 
   @doc """
@@ -43,5 +46,6 @@ defmodule TwelveDays do
   """
   @spec sing() :: String.t()
   def sing do
+    verses(1, 12)
   end
 end
