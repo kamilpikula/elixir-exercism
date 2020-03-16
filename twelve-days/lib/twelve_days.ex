@@ -1,4 +1,7 @@
 defmodule TwelveDays do
+  @doc """
+  `@days` is a map of tuples with days and gifts.
+  """
   @days %{
     1 => {:first, "and a Partridge in a Pear Tree."},
     2 => {:second, "two Turtle Doves"},
@@ -24,9 +27,10 @@ defmodule TwelveDays do
 
   def verse(number) when number > 1 do
     {numerator, gift} = Map.get(@days, number)
+    sentence = "On the #{numerator} day of Christmas my true love gave to me: #{gift}"
     Enum.take(@days, number - 1)
     |> Enum.reverse()
-    |> Enum.reduce("On the #{numerator} day of Christmas my true love gave to me: #{gift}", fn {_number, {_, gift_day}}, acc -> acc <> ", #{gift_day}" end)
+    |> Enum.reduce(sentence, fn {_key, {_atom, gift_day}}, acc -> acc <> ", #{gift_day}" end)
     |> String.trim()
   end
 
