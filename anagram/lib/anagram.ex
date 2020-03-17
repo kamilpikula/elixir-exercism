@@ -4,17 +4,22 @@ defmodule Anagram do
   """
   @spec match(String.t(), [String.t()]) :: [String.t()]
   def match(base, candidates) do
-    Enum.filter(candidates, fn word ->
-      sort_string(base) == sort_string(word) end)
-    |> Enum.reject(fn word ->
-       String.downcase(base) == String.downcase(word)
-    end)
+    candidates
+    |> Enum.filter(&is_anagram?(base, &1))
   end
 
-  def sort_string(string) do
+  @spec is_anagram?(String.t(), String.t()) :: boolean()
+  defp is_anagram?(base, candidate) do
+    sort_string(base) == sort_string(candidate)
+    &&
+    String.downcase(base) != String.downcase(candidate)
+  end
+
+  @spec sort_string(String.t()) :: [String.t()]
+  defp sort_string(string) do
     string
     |> String.downcase()
-    |> String.graphemes()
+    |> to_charlist()
     |> Enum.sort()
   end
 end
