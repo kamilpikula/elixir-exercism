@@ -15,7 +15,7 @@ defmodule Pangram do
 
   @spec pangram?(String.t()) :: boolean
   def pangram?(sentence) do
-    ascii_table = 97..122
+    ascii_table = ?a..?z
     Enum.all?(ascii_table, fn
       x -> Enum.member?(string_conversion(sentence), x)
     end)
