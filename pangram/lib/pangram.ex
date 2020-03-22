@@ -25,6 +25,6 @@ defmodule Pangram do
     string
     |> String.replace(@regex, "")
     |> String.downcase()
-    |> String.to_charlist()
+    |> :binary.bin_to_list()
   end
 end

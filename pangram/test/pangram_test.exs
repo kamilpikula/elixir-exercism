@@ -43,7 +43,7 @@ defmodule PangramTest do
 
   @tag :pending
   test "pangram with non ascii characters" do
-    refute Pangram.pangram?("Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.")
+    assert Pangram.pangram?("Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.")
   end
 
   @tag :pending
