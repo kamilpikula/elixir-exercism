@@ -1,15 +1,14 @@
 defmodule Prime do
+  import Stream, only: [interval: 1, drop: 2, filter: 2]
   @doc """
   Generates the nth prime.
   """
   @spec nth(non_neg_integer) :: non_neg_integer
 
-  def nth(count) when count < 1 do
-    raise ArgumentError
-  end
+  def nth(0), do: raise ArgumentError
   def nth(count) do
-    Stream.interval(1) |> Stream.drop(2) |> Stream.filter(&is_prime/1) |> Enum.take(count) |> List.last()
+    interval(1) |> drop(2) |> filter(&is_prime/1) |> Enum.take(count) |> List.last()
   end
 
-  def is_prime(x), do: (2..x |> Enum.filter(fn a -> rem(x, a) == 0 end) |> length()) == 1
+  defp is_prime(x), do: (2..x |> Enum.filter(fn a -> rem(x, a) == 0 end) |> length()) == 1
 end
