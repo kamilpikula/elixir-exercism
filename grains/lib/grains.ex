@@ -16,10 +16,8 @@ defmodule Grains do
   """
   @spec total :: pos_integer
   def total do
-    num = Enum.reduce(1..64, 0, fn x, acc ->
-      acc + calc(x)
-    end)
-    {:ok, num}
+    {:ok, Enum.reduce(1..64, 0, fn x, acc ->
+      acc + calc(x) end)}
   end
 
   defp calc(number), do: :math.pow(2, number - 1) |> round()
