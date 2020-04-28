@@ -1,0 +1,6 @@
+<a href="events/<%= @event.id %>">
+    <h4><%= @event.title %></h4>
+    <span><%= @event.location %></span>
+    <span><%= format_date(@event.date) %></span>
+</a>
+<hr>
