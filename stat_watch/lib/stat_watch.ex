@@ -23,8 +23,8 @@ defmodule StatWatch do
     ] |> Enum.join(", ")
   end
 
-  def save_csv(row_of_stats) do
-    filename = "stats.csv"
+  def save_csv(row_of_stats, name \\ ["stats"]) do
+    filename = "stats/#{name}.csv"
     unless File.exists?(filename) do
       File.write!(filename, column_names() <>  "\n")
     end
