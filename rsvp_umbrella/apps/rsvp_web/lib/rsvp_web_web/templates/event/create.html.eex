@@ -1,0 +1,16 @@
+<h1>Add event</h1>
+<%= form_for @changeset, Routes.event_path(@conn, :add), fn f ->  %>
+  <%= label f, :title, "Title" %>
+  <%= text_input f, :title %>
+
+  <%= label f, :location, "Location" %>
+  <%= text_input f, :location %>
+
+  <%= label f, :date, "Date" %>
+  <%= text_input f, :date, type: "datetime-local" %>
+
+  <%= label f, :description, "Description" %>
+  <%= textarea f, :description, rows: 5 %>
+
+  <%= submit "Add" %>
+<% end %>

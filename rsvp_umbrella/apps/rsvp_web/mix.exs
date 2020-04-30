@@ -43,7 +43,8 @@ defmodule RsvpWeb.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:rsvp, in_umbrella: true}
+      {:rsvp, in_umbrella: true},
+      {:phoenix_ecto, "~> 4.1"}
     ]
   end
 end

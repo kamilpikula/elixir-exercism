@@ -1,6 +1,15 @@
 defmodule RsvpWebWeb.EventController do
   use RsvpWebWeb, :controller
 
+  def create(conn, _params) do
+    changeset = Rsvp.Events.changeset(%Rsvp.Events{}, %{})
+    render conn, "create.html", changeset: changeset
+  end
+
+  def add(conn, _params) do
+
+  end
+
   def show(conn, %{"id" => id}) do
     event = Rsvp.EventQueries.get_by_id(id)
     |> IO.inspect()
