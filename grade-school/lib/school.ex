@@ -26,7 +26,7 @@ defmodule School do
   """
   @spec sort(map) :: [{integer, [String.t()]}]
   def sort(db) do
-    Enum.sort(db)
+    Enum.map(db, fn {k, list} -> {k, Enum.sort(list)} end)
   end
 
   def db do
